@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a href="{{ path('namespaces') }}"><h4>Namespaces</h4></a>
+    <h1>Files</h1>
+    <table>
+        {% for file in files %}
+            {% if file != '..' and file != '.' %}
+                <tr>
+                    <th style="text-align: left;">
+                        {{ file }}
+                    </th>
+                    <th>
+                        <a href="{{ path('file', {"namespace": namespace, "firstFile": file}) }}">
+                            compare
+                        </a>
+                    </th>
+                </tr>
+            {% endif %}
+        {% else %}
+            There is no file
+        {% endfor %}
+    </table>
+    <hr>
+    {{ form(uploadForm) }}
+{% endblock %}

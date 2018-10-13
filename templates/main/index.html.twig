@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Namespaces</h1>
+    {% for folder in folders %}
+        {% if folder != '..' and folder != '.' %}
+            <li>
+                <a href="{{ path('namespace', {"namespace": folder}) }}">
+                    {{ folder }}
+                </a>
+            </li>
+        {% endif %}
+    {% else %}
+        There is no namespace
+    {% endfor %}
+{% endblock %}

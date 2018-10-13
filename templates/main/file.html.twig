@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <a href="{{ path('namespaces') }}"><h4>Namespaces</h4></a>
+    <h4>Namespace: <a href="{{ path('namespace', {"namespace": namespace}) }}">{{ namespace }}</a></h4>
+    <h4>File: {{ firstFile }}</h4>
+    <table>
+        {% for compare in compares %}
+            <tr>
+                <th style="text-align: left;">
+                    {{ compare.file }}
+                </th>
+                <th style="text-align: left;">
+                    {{ compare.similarity|round }} %
+                </th>
+                <th style="text-align: left;">
+                    <a href="{{ path('show_diff', {
+                        "namespace": namespace,
+                        "firstFile": firstFile,
+                        "secondFile": compare.file
+                    }) }}">
+                        show diff
+                    </a>
+                </th>
+            </tr>
+        {% else %}
+            There is no other file!
+        {% endfor %}
+    </table>
+{% endblock %}
